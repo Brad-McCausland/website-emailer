@@ -12,8 +12,8 @@ var transport =
     port: 587,
     auth: 
     {
-        user: USERNAME,
-        pass: PASSWORD,
+        user: username,
+        pass: password,
     },
     tls: {
       rejectUnauthorized: false
