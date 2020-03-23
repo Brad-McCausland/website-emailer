@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 var nodemailer = require('nodemailer');
 var cors = require('cors');
-const creds = require('./serverConfig');
+
+const username = process.env.USERNAME
+const password = process.env.PASSWORD
 
 var transport =
 {
@@ -10,8 +12,8 @@ var transport =
     port: 587,
     auth: 
     {
-        user: creds.USER,
-        pass: creds.PASS,
+        user: USERNAME,
+        pass: PASSWORD,
     },
     tls: {
       rejectUnauthorized: false
