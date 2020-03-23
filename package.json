@@ -1,0 +1,15 @@
+{
+  "name": "email_server",
+  "version": "1.0.0",
+  "description": "Email server to handle requests from the website's contact form",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brad McCausland",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.2"
+  }
+}
