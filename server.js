@@ -3,8 +3,8 @@ var router = express.Router();
 var nodemailer = require('nodemailer');
 var cors = require('cors');
 
-const username = process.env.USERNAME
-const password = process.env.PASSWORD
+const username = process.env.DHusername;
+const password = process.env.DHpassword;
 
 var transport =
 {
@@ -26,11 +26,11 @@ transporter.verify((error, success) =>
 {
     if(error)
     {
-        console.log(error);
+        console.log("BM Mail Server Says: " + error);
     }
     else
     {
-        console.log('Server is ready to take messages');
+        console.log('BM Mail Server Says: Server is ready to take messages');
     }
 });
 
@@ -53,7 +53,7 @@ router.post('/send', (req, res, next) =>
     {
         if(err)
         {
-            console.log(err)
+            console.log("BM Mail Server Says: " + err)
             res.json(
             {
                 status: 'fail'
