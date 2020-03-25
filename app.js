@@ -2,8 +2,12 @@ var port = process.env.PORT || 3000,
     http = require('http'),
     nodemailer = require('nodemailer');
 
-    const username = process.env.DHusername;
-    const password = process.env.DHpassword;
+// Credentials for dreamhost webmail
+const username = process.env.DHusername;
+const password = process.env.DHpassword;
+
+// CORS allowed origins. Prod website and localhost test server
+const allowedOrigins = ['http://bradmccausland.com', 'http://localhost:8000']
     
 var transport =
 {
@@ -26,11 +30,11 @@ transporter.verify((error, success) =>
 {
     if(error)
     {
-        console.log("BM Mail Server Says: " + error);
+        console.log("Error: Email transporter failed to verify with error: " + error);
     }
     else
     {
-        console.log('BM Mail Server Says: Server is ready to take messages');
+        console.log('Server is ready to take messages on port: ' + port);
     }
 });
 
@@ -43,8 +47,9 @@ var server = http.createServer(function (req, res)
     })
     req.on('end', () =>
     {
+        // Check if request origin is allowed
         const origin = req.headers['origin'];
-        if (['http://bradmccausland.com', 'http://localhost:8000'].includes(origin))
+        if (allowedOrigins.includes(origin))
         {
             res.setHeader('Access-Control-Allow-Origin', origin);
         }
@@ -72,18 +77,13 @@ var server = http.createServer(function (req, res)
                 {
                     if(err)
                     {
-                        console.log("BM Mail Server Says: " + err)
-                        //TODO: Update fail case with whatever ends up working below
-                        res.json(
-                        {
-                            status: 'fail'
-                        })
+                        console.log("Error when sending mail: " + err)
+                        res.writeHead(500, {'Content-Type': 'text/plain'});
+                        res.end();
                     }
                     else
                     {
-                        console.log("BM Mail Server Says: Success!");
                         res.writeHead(200, {'Content-Type': 'text/plain'});
-                        res.write('success');
                         res.end();
                     }
                 })
@@ -92,8 +92,5 @@ var server = http.createServer(function (req, res)
     })
 });
 
-// Listen on port 3000, IP defaults to 127.0.0.1
 server.listen(port);
-
-// Put a friendly message on the terminal
 console.log('Server running at http://127.0.0.1:' + port + '/');
