@@ -7,7 +7,7 @@ const username = process.env.DHusername;
 const password = process.env.DHpassword;
 
 // CORS allowed origins. Prod website and localhost test server
-const allowedOrigins = ['http://bradmccausland.com', 'http://localhost:8000']
+const allowedOrigins = ['http://www.bradmccausland.com', 'http://localhost:8000']
     
 var transport =
 {
