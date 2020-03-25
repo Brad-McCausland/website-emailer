@@ -1,17 +1,9 @@
 {
-  "name": "email_server",
-  "version": "1.0.0",
-  "description": "Email server to handle requests from the website's contact form",
-  "main": "index.js",
+  "name": "Elastic-Beanstalk-Sample-App",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "Brad McCausland",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "nodemailer": "^6.4.2"
+    "start": "node app.js"
   }
 }
