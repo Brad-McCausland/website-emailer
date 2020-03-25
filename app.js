@@ -1,10 +1,6 @@
 var port = process.env.PORT || 3000,
     http = require('http'),
-    fs = require('fs'),
-    nodemailer = require('nodemailer'),
-    express = require('express'),
-    router = express.router,
-    html = fs.readFileSync('index.html');
+    nodemailer = require('nodemailer');
 
     const username = process.env.DHusername;
     const password = process.env.DHpassword;
